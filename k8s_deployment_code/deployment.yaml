@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-of-python-app
+  namespace: app-namespace
+  labels:
+    app: k8s-deployment-app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: k8s-app
+  template:
+    metadata:
+      labels:
+        project: k8s-app
+    spec:
+      containers:
+        - name: k8s-app-web
+          image: teranteks/test_task_python_webserver:v1
+          ports:
+            - containerPort: 5000
