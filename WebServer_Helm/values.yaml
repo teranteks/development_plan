@@ -21,4 +21,5 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 5
   targetCPUUtilizationPercentage: 1
+  averageValueMemory: 150Mi
 

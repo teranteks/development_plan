@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-app
+  name: deploy-app-{{ .Release.Name }}
   #namespace:  
   labels:
     app: k8s-deployment-app-{{ .Release.Name }} 
