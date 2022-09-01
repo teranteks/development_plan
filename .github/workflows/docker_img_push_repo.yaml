@@ -96,7 +96,7 @@ jobs:
         with:
           push: true
           file: ./app-code/Dockerfile
-          tags: teranteks/test_task_python_webserver:v2
+          tags: teranteks/test_task_python_webserver:${{ github.run_number }}
       
   helm_archive:
 
@@ -117,6 +117,6 @@ jobs:
           push-branch: 'main'
           commit-message: 'Push archived helm chart'
           force-add: 'true'
-          files: WebServer_HelmChart-0.1.0.tgz
+          files: WebServer_HelmChart-*.tgz
           name: teranteks
           email: jenkyfonk@gmail.com
