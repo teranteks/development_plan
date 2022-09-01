@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: python-app-horscaler-{{ .Release.Name }}
-  namespace: {{ .Values.nm }}
+  name: app-horscaler-{{ .Release.Name }}
+ # namespace: {{ .Values.nm }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1v1
     kind: Deployment
-    name: deployment-of-python-app-{{ .Release.Name }}
+    name: deploy-app-{{ .Release.Name }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

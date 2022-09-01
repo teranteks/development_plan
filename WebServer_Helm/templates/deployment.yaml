@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-of-python-app-{{ .Release.Name }}
-  namespace:  
+  name: deploy-app
+  #namespace:  
   labels:
     app: k8s-deployment-app-{{ .Release.Name }} 
 
@@ -21,3 +21,38 @@ spec:
           image: {{ .Values.containers.image }}
           ports:
             - containerPort: {{ .Values.containers.ports }}
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: {{ .Values.containers.ports }}
+
+            initialDelaySeconds: 10
+            failureThreshold: 2
+            periodSeconds: 5
+            timeoutSeconds: 2
+
+
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.containers.ports }}  
+            initialDelaySeconds: 5
+            failureThreshold: 2
+            periodSeconds: 5
+            successThreshold: 3
+            timeoutSeconds: 2
+
+          startupProbe:
+            httpGet:
+              path: /healthcheck
+              port: {{ .Values.containers.ports }}
+            failureThreshold: 30
+            periodSeconds: 10
+            timeoutSeconds: 2
+
+          resources:
+             requests:
+               memory: "50Mi"
+               cpu: "250m"
+             limits:
+               memory: "260Mi"
+               cpu: "500m" 

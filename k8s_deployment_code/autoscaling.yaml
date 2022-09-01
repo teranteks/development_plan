@@ -2,14 +2,16 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: python-app-horscaler
-  namespace: app-namespace
+  namespace:  app-namespace
+
+
 spec:
   scaleTargetRef:
-    apiVersion: apps/v2beta1v1
+    apiVersion: apps/v1
     kind: Deployment
     name: deployment-of-python-app
-  minReplicas: 1
-  maxReplicas: 3
+  minReplicas: 2
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
