@@ -7,7 +7,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY ./main.py /app/app.py
-COPY ./requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
 RUN apt-get update && apt-get upgrade
 RUN apt install -y curl
