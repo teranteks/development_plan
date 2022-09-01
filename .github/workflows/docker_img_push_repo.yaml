@@ -3,16 +3,77 @@ name: Docker_Img/Helm Repo Push
 
 on:
   branch_protection_rule:
-    types: [created, edited, deleted]
+    types: [created, edited]
   push:
     branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
+  image_check_changes:
+
+    runs-on: ubuntu-latest
+    
+    outputs:
+      img_file_changed: ${{ steps.check_img_file_changed.outputs.img_file_changed }}
+
+    steps:
+        - uses: actions/checkout@v3
+          with:
+          # Checkout as many commits needed for the diff
+            fetch-depth: 2
+
+        - shell: pwsh
+          id: check_img_file_changed
+          run: |
+            # Diff HEAD with the previous commit
+
+            $diff = git diff --name-only HEAD^ HEAD
+
+            # Check if a file under app-code/ has changed (added, modified, deleted)
+
+            $SourceDiff = $diff | Where-Object { $_ -match '^app-code/' }
+            $HasDiff = $SourceDiff.Length -gt 0
+
+            # Set the output named "img_file_changed"
+            
+            Write-Host "::set-output name=img_file_changed::$HasDiff"
+
+  helm_check_changes:
+
+    runs-on: ubuntu-latest
+    
+    outputs:
+      helm_file_changed: ${{ steps.check_helm_files_changed.outputs.helm_file_changed }}
+
+    steps:
+        - uses: actions/checkout@v3
+          with:
+          # Checkout as many commits needed for the diff
+            fetch-depth: 2
+
+        - shell: pwsh
+          id: check_helm_files_changed
+          run: |
+            # Diff HEAD with the previous commit
+
+            $diff = git diff --name-only HEAD^ HEAD
+
+            # Check if a file under app-code/ or under WebServer_Helm/ has changed (added, modified, deleted)
+
+            $SourceDiff = $diff | Where-Object { $_ -match '^k8s_deployment_code/' -or $_ -match '^WebServer_Helm/' }
+            $HasDiff = $SourceDiff.Length -gt 0
+
+            # Set the output named "helm_file_changed"
+            
+            Write-Host "::set-output name=helm_file_changed::$HasDiff"
+
+
   build_push:
 
     runs-on: ubuntu-latest
+    needs: [ image_check_changes ]
+    if: needs.image_check_changes.outputs.img_file_changed == 'True'
 
     steps:
       - uses: actions/checkout@v3
@@ -40,6 +101,8 @@ jobs:
   helm_archive:
 
      runs-on: ubuntu-latest
+     needs: [ helm_check_changes ]
+     if: needs.helm_check_changes.outputs.helm_file_changed == 'True'
 
      steps:
       - uses: actions/checkout@v3
