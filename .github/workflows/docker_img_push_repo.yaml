@@ -36,3 +36,13 @@ jobs:
           push: true
           file: ./app-code/Dockerfile
           tags: teranteks/test_task_python_webserver:v2
+      
+  helm_archive:
+
+     runs-on: ubuntu-latest
+
+     steps:
+      - uses: actions/checkout@v3
+
+      - name: Archive Helm Chart
+        run: helm package ./WebServer_Helm
