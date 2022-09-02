@@ -155,6 +155,10 @@ jobs:
         #   version: v3.5.0 # default is latest (stable)
 
       - name: Git Clone
-        run: echo "$KUBE_CONFIG_LINODE"
+        id: vars
+        run: echo "::set-output name=ver::$(cat KUBE_CONFIG_LINODE)"
+      
+      - name: Echo
+        run: echo ${{ steps.vars.outputs.ver }}
 
 
