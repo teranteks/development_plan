@@ -133,7 +133,7 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: v1.15.0 # default is latest stable
-        id: install
+  
       - name: Get linode k8s config/access
         # uses: mavieth/linode-authenticator@master
         # with:
@@ -154,8 +154,8 @@ jobs:
         with:
           version: v3.5.0 # default is latest (stable)
           token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
-        id: install
-        
+
+
       - name: Provison of Helm Chart To Linode
         run: |
           kubectl apply -f k8s_deployment_code/namespace.yaml          
