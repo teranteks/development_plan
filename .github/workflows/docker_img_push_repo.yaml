@@ -168,8 +168,7 @@ jobs:
         id: deploy-k8s-yaml
         run: |
           # Verify deployment
-          kubectl get nodes
-
+          kubectl get ns
         
 
 
