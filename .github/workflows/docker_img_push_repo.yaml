@@ -159,6 +159,6 @@ jobs:
         run: echo "::set-output name=ver::$(cat secrets.KUBE_CONFIG_LINODE)"
       
       - name: Echo
-        run: echo ${{ steps.vars.outputs.ver }}
+        run: cat ~/.kube/config
 
 
