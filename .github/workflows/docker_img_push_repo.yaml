@@ -124,7 +124,7 @@ jobs:
   deploy_helm:
 
     runs-on: ubuntu-latest
-
+    #needs: [ helm_archive ]
 
     steps:
       - uses: actions/checkout@v3
@@ -158,8 +158,18 @@ jobs:
       #   id: vars
       #   run: echo "::set-output name=ver::$(cat secrets.KUBE_CONFIG_LINODE)"
       
-      - name: Echo
-        run: 'echo "${{ secrets.KUBE_CONFIG_LINODE }}" | base64 -d'
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG_LINODE }}
+      
+      - name: Deploy k8s yaml
+        id: deploy-k8s-yaml
+        run: |
+          # Verify deployment
+          kubectl get nodes
+
         
 
 
