@@ -133,6 +133,7 @@ jobs:
         uses: mavieth/linode-authenticator@master
         with:
           LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
 
       - name: Provison of Helm Chart To Linode
         run: |
