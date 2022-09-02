@@ -143,7 +143,7 @@ jobs:
               ./get_helm.sh
               # mkdir ~/.kube
               # touch ~/.kube/config
-              echo ${{ secrets.KUBE_CONFIG_LINODE }} > ~/.kube/config
+              #echo ${{ secrets.KUBE_CONFIG_LINODE }} > ~/.kube/config
 
       - name: Provison of Helm Chart To Linode
         run: |
