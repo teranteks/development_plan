@@ -157,7 +157,7 @@ jobs:
 
       - name: Provison of Helm Chart To Linode
         run: |
-          kubectl apply -f ./k8s_deployment_code/namespace.yaml          
+          kubectl apply -f ./development_plan/k8s_deployment_code/namespace.yaml          
           git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
           cd kubernetes-ingress/deployments/helm-chart
           helm repo add nginx-stable https://helm.nginx.com/stable
