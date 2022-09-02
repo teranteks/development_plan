@@ -159,6 +159,7 @@ jobs:
       #   run: echo "::set-output name=ver::$(cat secrets.KUBE_CONFIG_LINODE)"
       
       - name: Echo
-        run: echo "${{ secrets.KUBE_CONFIG_LINODE }}"
+        run: 'echo "${{ secrets.KUBE_CONFIG_LINODE }}" | base64 -d'
+        
 
 
