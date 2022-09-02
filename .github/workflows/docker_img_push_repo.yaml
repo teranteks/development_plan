@@ -145,10 +145,10 @@ jobs:
         run: |
           # Verify 
           kubectl apply -f ./k8s_deployment_code/namespace.yaml
-          helm install app ./WebServer_Helm/ --namespace=app-namespace
+          helm install app ./WebServer_Helm/ --namespace=app-namespace1
           helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
           helm repo update
-          helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=app-namespace
+          helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=app-namespace1
 
 
         
