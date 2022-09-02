@@ -155,13 +155,6 @@ jobs:
         #   version: v3.5.0 # default is latest (stable)
 
       - name: Git Clone
-        uses: github-actions-x/commit@v2.9
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'main'
-          force-add: 'true'
-          files: a.txt b.txt c.txt dirA/ dirB/ dirC/a.txt
-          name: commiter name
-          email: my.github@email.com 
+        run: ls -alrt
 
 
