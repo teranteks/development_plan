@@ -135,4 +135,6 @@ jobs:
           LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
 
       - name: Provison of Helm Chart To Linode
-        run: helm install pyapp WebServer_HelmChart-*.tgz --namespace=app-namespace
+        run: |
+          kubectl apply -f k8s_deployment_code/namespace.yaml
+          helm install pyapp WebServer_HelmChart-*.tgz --namespace=app-namespace
