@@ -134,11 +134,11 @@ jobs:
         with:
           version: v1.15.0 # default is latest stable
   
-      - name: Get linode k8s config/access
-        uses: mavieth/linode-authenticator@master
-        with:
-          LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
-          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+      # - name: Get linode k8s config/access
+      #   uses: mavieth/linode-authenticator@master
+      #   with:
+      #     LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+      #     CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
         # run: |
         #       # curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
         #       # sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
@@ -154,15 +154,14 @@ jobs:
         # with:
         #   version: v3.5.0 # default is latest (stable)
 
-      # - name: Git Clone
-      # # - name: Provison of Helm Chart To Linode
-      # #   run: |
-      # #     git clone 
-      # #     kubectl apply -f https://github.com/teranteks/development_plan/tree/main/k8s_deployment_code/namespace.yaml         
-      # #     git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
-      # #     cd kubernetes-ingress/deployments/helm-chart
-      # #     helm repo add nginx-stable https://helm.nginx.com/stable
-      # #     helm repo update
-      # #     helm install my-release nginx-stable/nginx-ingress --namespace=app-namespace
-      # #     helm install pyapp ./WebServer_HelmChart-*.tgz --namespace=app-namespace
+      - name: Git Clone
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'main'
+          force-add: 'true'
+          files: a.txt b.txt c.txt dirA/ dirB/ dirC/a.txt
+          name: commiter name
+          email: my.github@email.com 
+
 
