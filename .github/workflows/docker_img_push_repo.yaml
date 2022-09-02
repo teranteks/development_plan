@@ -154,11 +154,11 @@ jobs:
         # with:
         #   version: v3.5.0 # default is latest (stable)
 
-      - name: Git Clone
-        id: vars
-        run: echo "::set-output name=ver::$(cat secrets.KUBE_CONFIG_LINODE)"
+      # - name: Git Clone
+      #   id: vars
+      #   run: echo "::set-output name=ver::$(cat secrets.KUBE_CONFIG_LINODE)"
       
       - name: Echo
-        run: cat ~/.kube/config
+        run: echo "${{ secrets.KUBE_CONFIG_LINODE }}"
 
 
