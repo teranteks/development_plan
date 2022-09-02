@@ -14,7 +14,7 @@ svc_port: 5000
 svc_target_port: 5000
 
 #Namespace 
-nm: app-namespace1
+nm: app
 
 #Horizontal scaling
 autoscaling:
