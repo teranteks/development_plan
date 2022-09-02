@@ -124,7 +124,7 @@ jobs:
   deploy_helm:
 
     runs-on: ubuntu-latest
-    needs: [ helm_archive ]
+
 
     steps:
       - uses: actions/checkout@v3
