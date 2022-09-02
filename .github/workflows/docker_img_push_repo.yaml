@@ -139,18 +139,23 @@ jobs:
         # with:
         #   LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
         #   CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
-        run: |
-              # curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-              # sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-              # kubectl version --client
+        # run: |
+        #       # curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        #       # sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+        #       # kubectl version --client
               
-              curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-              chmod 700 get_helm.sh
-              ./get_helm.sh
-              # mkdir ~/.kube
-              # touch ~/.kube/config
-              #echo ${{ secrets.KUBE_CONFIG_LINODE }} > ~/.kube/config
-
+        #       curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        #       chmod 700 get_helm.sh
+        #       ./get_helm.sh
+        #       # mkdir ~/.kube
+        #       # touch ~/.kube/config
+        #       #echo ${{ secrets.KUBE_CONFIG_LINODE }} > ~/.kube/config
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.5.0 # default is latest (stable)
+          token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
+        id: install
+        
       - name: Provison of Helm Chart To Linode
         run: |
           kubectl apply -f k8s_deployment_code/namespace.yaml          
