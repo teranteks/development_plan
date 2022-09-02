@@ -101,7 +101,7 @@ jobs:
   helm_archive:
 
      runs-on: ubuntu-latest
-     needs: [ helm_check_changes ]
+     needs: [ helm_check_changes, build_push ]
      if: needs.helm_check_changes.outputs.helm_file_changed == 'True'
 
      steps:
@@ -120,3 +120,19 @@ jobs:
           files: WebServer_HelmChart-*.tgz
           name: teranteks
           email: jenkyfonk@gmail.com
+  
+  deploy_helm:
+
+    runs-on: ubuntu-latest
+    needs: [ helm_archive ]
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Get linode k8s config/access
+        uses: mavieth/linode-authenticator@master
+        with:
+          LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+
+      - name: Provison of Helm Chart To Linode
+        run: helm install pyapp WebServer_HelmChart-*.tgz --namespace=app-namespace
