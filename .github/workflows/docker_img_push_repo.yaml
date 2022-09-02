@@ -135,10 +135,10 @@ jobs:
           version: v1.15.0 # default is latest stable
   
       - name: Get linode k8s config/access
-        # uses: mavieth/linode-authenticator@master
-        # with:
-        #   LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
-        #   CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+        uses: mavieth/linode-authenticator@master
+        with:
+          LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
         # run: |
         #       # curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
         #       # sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
@@ -150,18 +150,19 @@ jobs:
         #       # mkdir ~/.kube
         #       # touch ~/.kube/config
         #       #echo ${{ secrets.KUBE_CONFIG_LINODE }} > ~/.kube/config
-        uses: azure/setup-helm@v3
-        with:
-          version: v3.5.0 # default is latest (stable)
+        # uses: azure/setup-helm@v3
+        # with:
+        #   version: v3.5.0 # default is latest (stable)
 
-
-      - name: Provison of Helm Chart To Linode
-        run: |
-          kubectl apply -f https://github.com/teranteks/development_plan/tree/main/k8s_deployment_code/namespace.yaml         
-          git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
-          cd kubernetes-ingress/deployments/helm-chart
-          helm repo add nginx-stable https://helm.nginx.com/stable
-          helm repo update
-          helm install my-release nginx-stable/nginx-ingress --namespace=app-namespace
-          helm install pyapp ./WebServer_HelmChart-*.tgz --namespace=app-namespace
+      # - name: Git Clone
+      # # - name: Provison of Helm Chart To Linode
+      # #   run: |
+      # #     git clone 
+      # #     kubectl apply -f https://github.com/teranteks/development_plan/tree/main/k8s_deployment_code/namespace.yaml         
+      # #     git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
+      # #     cd kubernetes-ingress/deployments/helm-chart
+      # #     helm repo add nginx-stable https://helm.nginx.com/stable
+      # #     helm repo update
+      # #     helm install my-release nginx-stable/nginx-ingress --namespace=app-namespace
+      # #     helm install pyapp ./WebServer_HelmChart-*.tgz --namespace=app-namespace
 
