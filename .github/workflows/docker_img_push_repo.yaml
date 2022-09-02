@@ -130,12 +130,22 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Get linode k8s config/access
-        uses: mavieth/linode-authenticator@master
-        with:
-          LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
-          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+        # uses: mavieth/linode-authenticator@master
+        # with:
+        #   LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+        #   CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+        run: |
+              mkdir ~/.kube
+              touch ~/.kube/config
+              echo ${{ secrets.KUBE_CONFIG_LINODE }} > ~/.kube/config
 
       - name: Provison of Helm Chart To Linode
         run: |
-          kubectl apply -f k8s_deployment_code/namespace.yaml
+          kubectl apply -f k8s_deployment_code/namespace.yaml          
+          git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
+          cd kubernetes-ingress/deployments/helm-chart
+          helm repo add nginx-stable https://helm.nginx.com/stable
+          helm repo update
+          helm install my-release nginx-stable/nginx-ingress --namespace=app-namespace
           helm install pyapp WebServer_HelmChart-*.tgz --namespace=app-namespace
+
