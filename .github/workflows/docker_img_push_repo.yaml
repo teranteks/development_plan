@@ -167,8 +167,8 @@ jobs:
       - name: Deploy k8s yaml
         id: deploy-k8s-yaml
         run: |
-          # Verify deployment
-          kubectl get ns
+          # Verify 
+          kubectl apply -f ./k8s_deployment_code/namespace.yaml
         
 
 
