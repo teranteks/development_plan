@@ -153,16 +153,15 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: v3.5.0 # default is latest (stable)
-          token: ${{ secrets.GITHUB_TOKEN }} # only needed if version is 'latest'
 
 
       - name: Provison of Helm Chart To Linode
         run: |
-          kubectl apply -f k8s_deployment_code/namespace.yaml          
+          kubectl apply -f ./k8s_deployment_code/namespace.yaml          
           git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
           cd kubernetes-ingress/deployments/helm-chart
           helm repo add nginx-stable https://helm.nginx.com/stable
           helm repo update
           helm install my-release nginx-stable/nginx-ingress --namespace=app-namespace
-          helm install pyapp WebServer_HelmChart-*.tgz --namespace=app-namespace
+          helm install pyapp ./WebServer_HelmChart-*.tgz --namespace=app-namespace
 
