@@ -23,3 +23,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 65
   averageValueMemory: 150Mi
 
+ingress:
+  enabled: true
+  hosts:
+    - host: pyapp.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
