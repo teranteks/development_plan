@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: app-horscaler-{{ .Release.Name }}
- # namespace: {{ .Values.nm }}
+  namespace: {{ .Values.nm }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1v1
