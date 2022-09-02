@@ -155,6 +155,6 @@ jobs:
         #   version: v3.5.0 # default is latest (stable)
 
       - name: Git Clone
-        run: kubectl version
+        run: kubectl --help
 
 
