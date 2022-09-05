@@ -14,7 +14,7 @@ def client():
 
 @pytest.fixture()
 def set_url():
-    url = "http://localhost:5000/healthcheck"
+    url = "http://localhost:5000/healthcheck42432244"
     return url
 
 
