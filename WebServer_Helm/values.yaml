@@ -6,6 +6,7 @@ containers:
   image: teranteks/test_task_python_webserver:v1
   ports: 5000
 
+
 #Count of replicas
 replicasCount: 2
 

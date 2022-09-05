@@ -148,11 +148,9 @@ jobs:
           helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
           helm repo update
           helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=app-namespace
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm install  --set apiService.insecureSkipTLSVerify=true metrics-server bitnami/metrics-server
 
-      # - name: Sleep for 5 seconds
-      #   uses: jakejarvis/wait-action@master
-      #   with:
-      #     time: '5s'
 
       - name: Install App To K8s
         id: py-app-install

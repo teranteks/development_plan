@@ -17,11 +17,13 @@ spec:
         project: k8s-app-{{ .Release.Name }}
     spec:
       containers:
+
+
         - name: {{ .Values.containers.name }}-{{ .Release.Name }}
           image: {{ .Values.containers.image }}
           ports:
             - containerPort: {{ .Values.containers.ports }}
-          
+
           livenessProbe:
             httpGet:
               path: /healthcheck
@@ -57,3 +59,6 @@ spec:
              limits:
                memory: "260Mi"
                cpu: "500m" 
+        
+
+
