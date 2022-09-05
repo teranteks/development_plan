@@ -145,10 +145,10 @@ jobs:
         run: |
           # Verify 
           kubectl apply -f ./k8s_deployment_code/namespace.yaml
-          
-          helm repo add nginx-stable https://helm.nginx.com/stable
+
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
           helm repo update
-          helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true --namespace=app-namespace
+          helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=app-namespace
           helm repo add bitnami https://charts.bitnami.com/bitnami 
           helm install  --set apiService.insecureSkipTLSVerify=true metrics-server bitnami/metrics-server
 
