@@ -6,8 +6,8 @@ EXPOSE 5000
 RUN mkdir /app
 WORKDIR /app
 
-COPY ./app-code/main.py /app/app.py
-COPY ./app-code/requirements.txt /app/requirements.txt
+COPY ./app_code/main.py /app/app.py
+COPY ./app_code/requirements.txt /app/requirements.txt
 
 
 RUN apt-get update && apt-get upgrade

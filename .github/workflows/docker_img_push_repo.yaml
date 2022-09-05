@@ -30,9 +30,9 @@ jobs:
 
             $diff = git diff --name-only HEAD^ HEAD
 
-            # Check if a file under app-code/ has changed (added, modified, deleted)
+            # Check if a file under app_code/ has changed (added, modified, deleted)
 
-            $SourceDiff = $diff | Where-Object { $_ -match '^app-code/' }
+            $SourceDiff = $diff | Where-Object { $_ -match '^app_code/' }
             $HasDiff = $SourceDiff.Length -gt 0
 
             # Set the output named "img_file_changed"
@@ -59,7 +59,7 @@ jobs:
 
             $diff = git diff --name-only HEAD^ HEAD
 
-            # Check if a file under app-code/ or under WebServer_Helm/ has changed (added, modified, deleted)
+            # Check if a file under app_code/ or under WebServer_Helm/ has changed (added, modified, deleted)
 
             $SourceDiff = $diff | Where-Object { $_ -match '^k8s_deployment_code/' -or $_ -match '^WebServer_Helm/' -or $_ -match '^WebServer_Helm/templates/' }
             $HasDiff = $SourceDiff.Length -gt 0
@@ -95,7 +95,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          file: ./app-code/Dockerfile
+          file: ./app_code/Dockerfile
           tags: teranteks/test_task_python_webserver:${{ github.run_number }}
       
   helm_archive:
