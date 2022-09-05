@@ -140,17 +140,18 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG_LINODE }}
       
-      - name: Deploy k8s yaml
+      - name: Install previosly k8s yamls
         id: deploy-k8s-yaml
         run: |
           # Verify 
-          # kubectl apply -f ./k8s_deployment_code/namespace.yaml
-          # helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-          # helm repo update
-          # helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=app-namespace
+          kubectl apply -f ./k8s_deployment_code/namespace.yaml
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+          helm repo update
+          helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=app-namespace
           
-          
-          helm install app ./WebServer_Helm/ --namespace=app-namespace
+      - name: Install App To K8s
+        id: py-app-install
+        run: helm install app ./WebServer_Helm/ --namespace=app-namespace
 
 
 
