@@ -61,7 +61,7 @@ jobs:
 
             # Check if a file under app-code/ or under WebServer_Helm/ has changed (added, modified, deleted)
 
-            $SourceDiff = $diff | Where-Object { $_ -match '^k8s_deployment_code/' -or $_ -match '^WebServer_Helm/' }
+            $SourceDiff = $diff | Where-Object { $_ -match '^k8s_deployment_code/' -or $_ -match '^WebServer_Helm/' -or $_ -match '^WebServer_Helm/templates/' }
             $HasDiff = $SourceDiff.Length -gt 0
 
             # Set the output named "helm_file_changed"
