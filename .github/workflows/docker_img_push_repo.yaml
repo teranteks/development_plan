@@ -96,16 +96,16 @@ jobs:
       - shell: pwsh  
         id: check_tests  
         run: |
-            $testing = python3 -m pytest ./app_code/tests/test_app.py | grep "passed"
+            python3 -m pytest ./app_code/tests/test_app.py 
 
-            Write-Host "::set-output name=test_res::$testing"
-            echo $testing
+            # Write-Host "::set-output name=test_res::$testing"
+            # echo $testing
 
   build_push:
 
     runs-on: ubuntu-latest
     needs: [ image_check_changes,app_testing ]
-    if: ${{ (needs.image_check_changes.outputs.img_file_changed == 'True' ) && ( needs.app_testing.outputs.test_res == 'passed') }}
+    if: ${{ (needs.image_check_changes.outputs.img_file_changed == 'True' ) }}
 
     steps:
       - uses: actions/checkout@v3
