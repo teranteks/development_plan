@@ -93,23 +93,17 @@ jobs:
           pip3 install pytest
           pip3 install Werkzeug
 
-      - name: Run test  
+      - shell: pwsh  
         id: check_tests  
         run: |
-            $testing = $(python3 -m pytest ./app_code/tests/test_app.py | grep passed)
-            # $diff = $test | grep "passed"
-            # if [[ $diff == "passed" ]]; then
-            #   $diff = True
-            # else
-            #   $diff = False
-            # fi  
-            $diff=False
+            $testing = python3 -m pytest ./app_code/tests/test_app.py | grep passed
+            $diff = False
             if [[ $(testing | grep passed)]];
             then
               $diff=True
             fi
 
-            # Write-Host "::set-output name=test_res::$testing"
+            Write-Host "::set-output name=test_res::$testing"
 
   build_push:
 
