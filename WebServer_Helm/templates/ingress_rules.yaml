@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-app-{{ .Release.Name }}
   namespace: {{ .Values.nm }}
-    annotations:
+  annotations:
       kubernetes.io/ingress.class: nginx
   labels: 
     env: dev
