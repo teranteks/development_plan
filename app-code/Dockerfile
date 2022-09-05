@@ -3,9 +3,9 @@ MAINTAINER Teranteks
 
 EXPOSE 5000
 
-
 RUN mkdir /app
 WORKDIR /app
+
 
 COPY ./app-code/main.py /app/app.py
 COPY ./app-code/requirements.txt /app/requirements.txt
