@@ -12,7 +12,6 @@ COPY ./app_code/requirements.txt /app/requirements.txt
 COPY ./app_code/tests/* /app/tests/
 
 
-
 RUN apt-get update && apt-get upgrade
 RUN apt install -y curl
 RUN apt install -y stress
