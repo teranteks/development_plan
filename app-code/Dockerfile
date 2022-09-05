@@ -6,9 +6,9 @@ EXPOSE 5000
 RUN mkdir /app
 WORKDIR /app
 
-
 COPY ./app-code/main.py /app/app.py
 COPY ./app-code/requirements.txt /app/requirements.txt
+
 
 RUN apt-get update && apt-get upgrade
 RUN apt install -y curl
