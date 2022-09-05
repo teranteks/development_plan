@@ -98,7 +98,7 @@ jobs:
         run: |
             $testing = python3 -m pytest ./app_code/tests/test_app.py | grep passed
             $diff = False
-            if [[ $(testing | grep passed)]];
+            if ([[ $(testing | grep passed)]]);
             then
               $diff=True
             fi
