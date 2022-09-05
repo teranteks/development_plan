@@ -97,7 +97,14 @@ jobs:
         id: check_tests  
         run: |
             $test = python3 -m pytest ./app_code/tests/test_app.py | grep passed
-            $diff = if $test == "passed"
+
+            if [[ $test == "passed" ]]; then
+              $diff = True
+            else
+              $diff = False
+            fi  
+
+
             Write-Host "::set-output name=test_res::$diff"
 
   build_push:
