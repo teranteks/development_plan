@@ -3,6 +3,7 @@ MAINTAINER Teranteks
 
 EXPOSE 5000
 
+
 RUN mkdir /app
 RUN mkdir /app/tests
 WORKDIR /app
