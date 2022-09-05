@@ -21,3 +21,4 @@ RUN pip3 install -r /app/requirements.txt
 CMD [ "python3", "./app.py"]
 
 HEALTHCHECK CMD curl --fail http://localhost:5000/healthcheck || exit 1
+
