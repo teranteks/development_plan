@@ -68,12 +68,42 @@ jobs:
             
             Write-Host "::set-output name=helm_file_changed::$HasDiff"
 
+  app_testing:
+    runs-on: ubuntu-latest
+    needs: [image_check_changes]
+    outputs:
+      test_res: ${{ steps.check_tests.outputs.test_res }}
+    if: needs.image_check_changes.outputs.img_file_changed == 'True'
+
+    steps: 
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      
+      - name: Install Pip3
+        run: sudo apt -y install python3-pip
+
+      - name: Install Modules
+        run: |
+          pip3 install Flask
+          pip3 install requests
+          pip3 install pytest
+          pip3 install Werkzeug
+
+      - name: Run test  
+        id: check_tests  
+        run: |
+            $test = python3 -m pytest ./app_code/tests/test_app.py | grep passed
+            Write-Host "::set-output name=test_res::$test"
 
   build_push:
 
     runs-on: ubuntu-latest
-    needs: [ image_check_changes ]
-    if: needs.image_check_changes.outputs.img_file_changed == 'True'
+    needs: [ image_check_changes, app_testing ]
+    if: needs.image_check_changes.outputs.img_file_changed == 'True' && needs.app_testing.outputs.test_res == "passed"
 
     steps:
       - uses: actions/checkout@v3
