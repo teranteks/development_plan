@@ -21,6 +21,7 @@ spec:
           image: {{ .Values.containers.image }}
           ports:
             - containerPort: {{ .Values.containers.ports }}
+          
           livenessProbe:
             httpGet:
               path: /healthcheck
