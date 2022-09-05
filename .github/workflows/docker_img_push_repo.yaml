@@ -96,9 +96,9 @@ jobs:
       - name: Run test  
         id: check_tests  
         run: |
-            $test = python3 -m pytest ./app_code/tests/test_app.py | grep passed
-            $diff = "s"
-            if [[ $test == "passed" ]]; then
+            $test = python3 -m pytest ./app_code/tests/test_app.py 
+            $diff = $test | grep "passed"
+            if [[ $diff == "passed" ]]; then
               $diff = True
             else
               $diff = False
