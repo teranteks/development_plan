@@ -7,6 +7,8 @@ RUN mkdir /app
 RUN mkdir /app/tests
 WORKDIR /app
 
+
+
 COPY ./app_code/main.py /app/app.py
 COPY ./app_code/requirements.txt /app/requirements.txt
 COPY ./app_code/tests/* /app/tests/
