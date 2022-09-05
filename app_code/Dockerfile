@@ -1,6 +1,7 @@
 FROM python:3.8-slim-buster
 MAINTAINER Teranteks
 
+
 EXPOSE 5000
 
 RUN mkdir /app
