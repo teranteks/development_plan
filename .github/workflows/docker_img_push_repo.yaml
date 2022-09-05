@@ -125,6 +125,7 @@ jobs:
 
     runs-on: ubuntu-latest
     needs: [ helm_archive ] #Set After Build Success
+    if: needs.helm_check_changes.outputs.helm_file_changed == 'True'
 
     steps:
       - uses: actions/checkout@v3
