@@ -101,7 +101,7 @@ jobs:
   helm_archive:
 
      runs-on: ubuntu-latest
-     needs: [ build_push ]
+     needs: [ helm_check_changes ]
      if: needs.helm_check_changes.outputs.helm_file_changed == 'True'
 
      steps:
