@@ -155,7 +155,7 @@ jobs:
 
       - name: Install App To K8s
         id: py-app-install
-        run: helm install app ./WebServer_Helm/ --namespace=app-namespace --set controller.service.type=NodePort
+        run: helm install app ./WebServer_Helm/ --namespace=app-namespace #--set controller.service.type=NodePort
 
           
 
