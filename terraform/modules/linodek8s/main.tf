@@ -15,6 +15,21 @@ resource "linode_lke_cluster" "k8s_ter" {
 
   pool {
     type  = var.cluster_pool_type
-    count = var.cluster_pool_count
+    count = var.cluster_pool_min
+
+    autoscaler {
+      min = var.cluster_pool_min
+      max = var.cluster_pool_max
+    }
+  }
+
+  lifecycle {
+    create_before_destroy = true
+    prevent_destroy = false
+    ignore_changes = [ 
+      region, 
+      k8s_version, 
+      pool.0.count # Prevent the count field from overriding autoscaler-created nodes
+    ]
   }
 }
