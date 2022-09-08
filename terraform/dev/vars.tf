@@ -22,9 +22,16 @@ variable "cluster_region" {
   sensitive = true  
 }
 
-variable "cluster_pool_count" {
+variable "cluster_pool_min" {
   type = number
-  description = "number of nodes for cluster"
+  description = "min number of nodes for cluster"
+  sensitive = true
+}
+
+
+variable "cluster_pool_max" {
+  type = number
+  description = "max number of nodes for cluster"
   sensitive = true
 }
 

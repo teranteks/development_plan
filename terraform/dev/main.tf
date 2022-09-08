@@ -17,6 +17,8 @@ module "linode_k8s" {
   k8s_version = var.k8s_version
   cluster_region = var.cluster_region
   cluster_pool_type = var.cluster_pool_type
-  cluster_pool_count = var.cluster_pool_count
+  cluster_pool_min = var.cluster_pool_min
+  cluster_pool_max = var.cluster_pool_max
+  
 }
 
