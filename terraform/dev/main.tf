@@ -5,6 +5,7 @@ terraform {
       version = ">=1.29.2"
     }
   }
+
 }
 
 provider "linode" {
@@ -19,6 +20,6 @@ module "linode_k8s" {
   cluster_pool_type = var.cluster_pool_type
   cluster_pool_min = var.cluster_pool_min
   cluster_pool_max = var.cluster_pool_max
-  
+  firewall_name = var.firewall_name
 }
 

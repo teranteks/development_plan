@@ -40,3 +40,43 @@ variable "cluster_pool_type" {
   description = "type of pool nodes"
 
 }
+
+
+#Remote State Vars
+
+variable "bucket_name" {
+    type = string
+    description = "bucket_name"
+  
+}
+
+variable "storage_region" {
+    type = string
+    description = "storage_region"
+  
+}
+
+variable "key_path" {
+    type = string
+    description = "key path for terraform state"
+  
+}
+
+variable "backend_profile" {
+    type = string
+    description = "backend_profile"
+  
+}
+
+variable "backend_endpoint" {
+    type = string
+    description = "backend_endpoint"
+  
+}
+
+
+variable "firewall_name" {
+  type = string
+  description = "firewall_name"
+  
+}

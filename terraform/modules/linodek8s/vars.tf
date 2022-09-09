@@ -31,3 +31,10 @@ variable "cluster_pool_type" {
   description = "type of pool nodes"
 
 }
+
+
+
+variable "firewall_name" {
+  type = string
+  description = "firewall_name"
+}

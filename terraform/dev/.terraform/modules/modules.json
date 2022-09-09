@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"linode_k8s","Source":"../modules/linodek8s","Dir":"../modules/linodek8s"},{"Key":"","Source":"","Dir":"."},{"Key":"dev_linode","Source":"file:///home/softwarenetic/k8s_prac/helmapp/terraform/modules/","Dir":".terraform/modules/dev_linode"},{"Key":"linodek8s","Source":"file:///home/softwarenetic/k8s_prac/helmapp/terraform/modules/linodek8s","Dir":".terraform/modules/linodek8s"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"linode_k8s","Source":"../modules/linodek8s","Dir":"../modules/linodek8s"}]}
