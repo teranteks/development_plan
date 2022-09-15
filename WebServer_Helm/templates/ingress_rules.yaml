@@ -9,6 +9,7 @@ metadata:
     env: dev
     owner: Teranteks
 spec:
+
   defaultBackend:
     service:
       name: app-{{ .Release.Name }}-pod-service

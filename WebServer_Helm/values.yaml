@@ -26,8 +26,11 @@ autoscaling:
 
 ingress:
   enabled: true
-  hosts:
-    - host: pyapp.com
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  annotations:
+     kubernetes.io/ingress.class: nginx   
+
+  # hosts:
+  #  - host: pyapp.com
+  #    paths:
+  #      - path: /
+  #        pathType: ImplementationSpecific
