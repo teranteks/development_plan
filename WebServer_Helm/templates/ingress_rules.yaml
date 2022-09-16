@@ -15,6 +15,7 @@ spec:
       name: app-{{ .Release.Name }}-pod-service
       port:
         number: {{ .Values.svc_port }}
+        
   rules:
   - host: pyapp.com
     http:

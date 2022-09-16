@@ -7,6 +7,7 @@ metadata:
     env: dev
     owner: Teranteks
 
+
 spec:
   selector:
     project: k8s-app-{{ .Release.Name }}
