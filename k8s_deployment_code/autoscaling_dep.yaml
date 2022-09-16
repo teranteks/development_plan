@@ -4,7 +4,6 @@ metadata:
   name: python-app-horscaler
   namespace:  app-namespace
 
-
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
