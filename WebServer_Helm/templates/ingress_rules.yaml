@@ -16,6 +16,7 @@ spec:
       port:
         number: {{ .Values.svc_port }}
         
+        
   rules:
   - host: pyapp.com
     http:
